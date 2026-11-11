@@ -41,21 +41,6 @@
         );
       }
 
-      async function startSecondForm() {
-        if (secondAngularInstance) return;
-
-        secondAngularInstance = await AngularForm.init(
-          document.getElementById('root2'),
-          {
-            firstName: 'Jan',
-            lastName: 'Nowak',
-          },
-          function (data) {
-            console.log('Drugi formularz:', data);
-          },
-        );
-      }
-
       function destroyForm() {
         if (!angularInstance) return;
 
@@ -63,11 +48,6 @@
         angularInstance = null;
 
         console.log('Angular zniszczony');
-      }
-
-      function destroySecondForm() {
-        secondAngularInstance?.destroy();
-        secondAngularInstance = null;
       }
 
       function updateForm() {
