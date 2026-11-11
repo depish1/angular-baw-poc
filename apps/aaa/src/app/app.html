@@ -1,0 +1,8 @@
+@switch (formType()) {
+  @case ('REGISTRATION') {
+    <aaa-registration-form />
+  }
+  @default {
+    <p>Nieznany typ formularza: {{ formType() }}</p>
+  }
+}

@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Angular Embed POC</title>
+  </head>
+  <body>
+    <h1>Strona hosta</h1>
+
+    <p>Angular bundle jest ładowany w głównym oknie.</p>
+
+    <button id="start" onclick="startForm()">Uruchom Angular</button>
+    <button onclick="destroyForm()">Zniszcz Angular</button>
+    <button onclick="updateForm()">Zmień dane</button>
+
+    <div id="iframe-container"></div>
+    <div id="root"></div>
+    <div id="root2"></div>
+
+    <script src="./angular-form.js"></script>
+
+    <script>
+      let angularInstance = null;
+      let secondAngularInstance = null;
+
+      async function startForm() {
+        if (angularInstance) return;
+        console.log(AngularForm);
+
+        angularInstance = await AngularForm.init(
+          'REGISTRATION',
+          document.getElementById('root'),
+          {
+            firstName: 'Kamil',
+            lastName: 'Kowalski',
+          },
+          function (data) {
+            console.log('Dane otrzymane z Angulara:', data);
+            alert(`Zapisano: ${data.firstName} ${data.lastName}`);
+          },
+        );
+      }
+
+      async function startSecondForm() {
+        if (secondAngularInstance) return;
+
+        secondAngularInstance = await AngularForm.init(
+          document.getElementById('root2'),
+          {
+            firstName: 'Jan',
+            lastName: 'Nowak',
+          },
+          function (data) {
+            console.log('Drugi formularz:', data);
+          },
+        );
+      }
+
+      function destroyForm() {
+        if (!angularInstance) return;
+
+        angularInstance.destroy();
+        angularInstance = null;
+
+        console.log('Angular zniszczony');
+      }
+
+      function destroySecondForm() {
+        secondAngularInstance?.destroy();
+        secondAngularInstance = null;
+      }
+
+      function updateForm() {
+        if (!angularInstance) return;
+
+        angularInstance.setData({
+          firstName: 'Nadia',
+          lastName: 'Nowa',
+        });
+      }
+    </script>
+  </body>
+</html>
