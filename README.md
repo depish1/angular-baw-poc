@@ -18,6 +18,7 @@ Sprawdzić architekturę stopniowej migracji interfejsów IBM Business Automatio
 - [Architektura](docs/architecture.md) — granica BAW/Angular, bridge, dane, usługi.
 - [Repozytorium i build](docs/repository-and-build.md) — struktura, zależności, pakowanie.
 - [Decyzje i pytania otwarte](docs/decisions-and-open-questions.md) — ustalenia, alternatywy i niewiadome.
+- [Angular Web Components — koncepcja](docs/angular-web-components.md) — rozważany scenariusz współdzielonych komponentów biznesowych osadzanych w Coach Views.
 - [Roadmapa](docs/roadmap.md) — co działa, co zweryfikować dalej.
 - [Szybkie odtworzenie repozytorium](docs/setup-guide.md) — polecenia i minimalna konfiguracja.
 
