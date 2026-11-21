@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Documents — test Angular Elements</title>
+    <style>
+      body { max-width: 1800px; margin: 2rem auto; padding: 0 1rem; font: 16px/1.5 system-ui, sans-serif; color: #222; }
+      .instances { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 450px), 1fr)); gap: 1rem; margin-top: 1rem; }
+      .panel { padding: 1rem; border: 1px solid #ccc; border-radius: 8px; min-width: 0; }
+      .controls { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1rem 0; }
+      button { padding: .45rem .75rem; cursor: pointer; }
+      button:disabled { cursor: not-allowed; opacity: .5; }
+      textarea, pre { box-sizing: border-box; width: 100%; }
+      textarea { min-height: 5rem; font: inherit; }
+      pre { padding: .75rem; background: #f5f5f5; overflow: auto; white-space: pre-wrap; overflow-wrap: anywhere; }
+      #events { max-height: 20rem; overflow: auto; }
+      h1 {margin: 1rem auto;}
+      h2 {margin: 1rem auto;}
+      h4 {margin: 0.5rem auto;}
+    </style>
+  </head>
+  <body>
+    <h1>Documents — demonstracja Custom Element</h1>
+    <p>Rejestracja i inicjalizacja Angular odbywają się dopiero po kliknięciu przycisku.</p>
+    <button id="initialize">Zainicjalizuj komponenty</button>
+    <main class="instances">
+      <section class="panel" data-demo="a">
+        <h4>Repozytorium A — DEFERRED</h2>
+        <div data-mount></div>
+        <label for="data-a">Metadane JSON dla setData()</label>
+        <textarea id="data-a" data-documents>[]</textarea>
+        <div class="controls">
+          <button data-action="set-data" disabled>setData()</button>
+          <button data-action="get-data" disabled>getData()</button>
+          <button data-action="set-invalid" disabled>setValid(false)</button>
+          <button data-action="set-valid" disabled>setValid(true)</button>
+          <button data-action="commit" disabled>commit()</button>
+          <button data-action="status" disabled>Sprawdź status</button>
+        </div>
+        <pre data-output>Oczekiwanie na inicjalizację.</pre>
+      </section>
+      <section class="panel" data-demo="b">
+        <h4>Repozytorium B — IMMEDIATE</h2>
+        <div data-mount></div>
+        <label for="data-b">Metadane JSON dla setData()</label>
+        <textarea id="data-b" data-documents>[]</textarea>
+        <div class="controls">
+          <button data-action="set-data" disabled>setData()</button>
+          <button data-action="get-data" disabled>getData()</button>
+          <button data-action="set-invalid" disabled>setValid(false)</button>
+          <button data-action="set-valid" disabled>setValid(true)</button>
+          <button data-action="commit" disabled>commit()</button>
+          <button data-action="status" disabled>Sprawdź status</button>
+        </div>
+        <pre data-output>Oczekiwanie na inicjalizację.</pre>
+      </section>
+    </main>
+    <details>
+      <summary>Przykładowa tablica metadanych JSON</summary>
+      <pre>[{"id":"example-id","fileName":"test.pdf","name":"Test","mimeType":"application/pdf"}]</pre>
+    </details>
+    <h2>Dziennik zdarzeń</h2>
+    <pre id="events">Brak zdarzeń.</pre>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

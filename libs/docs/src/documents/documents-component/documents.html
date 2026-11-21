@@ -1,0 +1,65 @@
+<section class="documents__container" [attr.aria-invalid]="invalid() ? true : null">
+  <h2>{{ title() }}</h2>
+  @if (invalid()) {
+    @for (error of errors(); track $index) {
+      @if (error.message) {
+        <p  class="error" role="alert">{{ error.message }}</p>
+      }
+    }
+  }
+  <nav class="documents__actions">
+    <input
+      type="search"
+      [disabled]="disabled()"
+      placeholder="Szukaj po nazwie pliku..."
+      [value]="searchQuery()"
+      (input)="searchQuery.set($any($event.target).value)"
+    />
+    <input #fileInput type="file" hidden [disabled]="actionsDisabled()" (change)="uploadDocument($event)" />
+    <button type="button" (click)="fileInput.click()" [disabled]="actionsDisabled()">Dodaj dokument</button>
+  </nav>
+  <table class="documents-table">
+    <colgroup>
+      <col class="col-state" />
+      <col />
+      <col class="col-user" />
+      <col class="col-date" />
+      <col class="col-actions" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>Status</th>
+        <th>Nazwa pliku</th>
+        <th>Użytkownik</th>
+        <th>Data dodania</th>
+        <th>Akcje</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (document of filteredDocuments(); track document.localId) {
+        <tr>
+          <td>{{ document.state() }}</td>
+          <td>{{ document.metadata().fileName }}</td>
+          <td>{{ document.metadata().user }}</td>
+          <td>{{ formatDate(document.metadata().createDate) }}</td>
+          <td>
+            @if (document.state() === 'MARKED_FOR_DELETE' || document.state() === 'DELETE_FAILED') {
+              <button type="button" [disabled]="actionsDisabled()" (click)="undoDelete(document.localId)">Cofnij</button>
+            } @else {
+              <button
+                type="button"
+                [disabled]="document.state() === 'ADDING' || document.state() === 'DELETING' || actionsDisabled()"
+                (click)="removeDocument(document.localId)"
+              >
+                Usuń
+              </button>
+            }
+            <button type="button" [disabled]="document.state() === 'DELETING' || actionsDisabled()" (click)="downloadDocument(document.localId)">
+              Pobierz
+            </button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</section>
