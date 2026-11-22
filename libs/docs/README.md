@@ -49,6 +49,6 @@ w `examples/documents-element/`. Ten build nie korzysta z paczki APF `docs`.
 
 ## Zależności
 
-`docs` i `ui` deklarują Angular 21 jako `peerDependency`. Zgodność z Angular 22
-wymaga osobnego testu integracyjnego i aktualizacji deklaracji zgodności.
+`docs` i `ui` deklarują Angular 21 oraz 22 jako `peerDependency` po testach
+integracyjnych w aplikacji `aaa` (Angular 22).
 Repozytorium B pozostaje placeholderem.

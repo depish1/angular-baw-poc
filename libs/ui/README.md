@@ -139,8 +139,8 @@ Nie instaluj aplikacji bezpośrednio z katalogu źródłowego `libs/ui`.
 ## Zależności
 
 Angular jest `peerDependency` paczki i `devDependency` jej własnego procesu
-budowania. Obecnie deklarowana jest zgodność z Angular 21. Obsługę Angular 22
-i dalszych wersji rozszerzymy **po przeprowadzeniu testów integracyjnych**.
+budowania. Deklarowana jest zgodność z Angular 21 i 22, przetestowana przy
+integracji obu bibliotek z aplikacją `aaa` na Angularze 22.
 
 W docelowym rejestrze npm należy sprawdzić dostępność nieskopowanej nazwy
 `ui` przed publikacją. Nie publikujemy paczki w ramach tego zadania.
