@@ -70,6 +70,21 @@ Pojedynczy checkbox przechowuje `boolean` (`false` domyślnie), wspiera
 
 Gotowe pole korzysta z `UiLabel` i `UiError`, z etykietą po prawej stronie.
 
+### UiCheckboxGroup i UiFormFieldCheckboxGroup
+
+Grupa wielokrotnego wyboru przechowuje **tablicę pełnych obiektów**. Obowiązkowe
+`labelKey` i `valueKey` wskazują odpowiednio pole etykiety i klucz porównywania:
+
+```html
+<ui-checkbox-group [options]="departments" labelKey="name" valueKey="id"
+  [(value)]="selectedDepartments" />
+<ui-form-field-checkbox-group label="Działy" [formField]="fields.departments"
+  [options]="departments" labelKey="name" valueKey="id" />
+```
+
+`orientation` to `vertical` (domyślnie) albo `horizontal`. Zmiana listy `options`
+nie podmienia wybranych obiektów w wartości formularza.
+
 ## CSS i motywy
 
 Paczka udostępnia pliki CSS jako osobne eksporty. Aplikacja wybiera **jeden**

@@ -9,3 +9,6 @@ export { UiError } from './lib/error/error';
 export { UiFormFieldInput } from './lib/form-field-input/form-field-input';
 export { UiCheckbox } from './lib/checkbox/checkbox';
 export { UiFormFieldCheckbox } from './lib/form-field-checkbox/form-field-checkbox';
+export { UiCheckboxGroup } from './lib/checkbox-group/checkbox-group';
+export type { GroupOrientation } from './lib/checkbox-group/checkbox-group';
+export { UiFormFieldCheckboxGroup } from './lib/form-field-checkbox-group/form-field-checkbox-group';
