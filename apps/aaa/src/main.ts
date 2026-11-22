@@ -1,33 +1,49 @@
 import { createApplication } from '@angular/platform-browser';
-import { App } from './app/app';
-import { RegistrationForm } from './app/forms/registration-form/registration-form';
+import { inputBinding, type Type } from '@angular/core';
+import { resolveForm } from '../../../libs/form-runtime/src/form-registry';
+import type { FormBridge } from './app/form-contract';
+import { forms } from './app/forms';
 
-type FormDataType = { firstName: string; lastName: string };
-
-export const init = async (
+/**
+ * Wejście wywoływane przez host (docelowo przez bridge BAW).
+ * Binding i config mają typy zależne od formType; host JS przekazuje je jako unknown.
+ * Kontrakt każdego formularza jest sprawdzany typami w jego implementacji i rejestrze.
+ */
+export async function init(
   formType: string,
   element: HTMLElement,
-  data: FormDataType,
-  onSave: (data: FormDataType) => void,
-  globalCss: string = '',
-) => {
+  binding: unknown,
+  config: unknown,
+  bridge: FormBridge<unknown>,
+  globalCss = '',
+) {
+  const form: Type<unknown> = resolveForm(forms, formType);
   const appRef = await createApplication();
-  const componentRef = appRef.bootstrap(RegistrationForm, element);
 
-  const doc = element.ownerDocument;
-  const styleElement = doc.createElement('style');
+  const styleElement = element.ownerDocument.createElement('style');
   styleElement.textContent = globalCss;
-  doc.head.appendChild(styleElement);
 
-  componentRef.setInput('data', data);
-  componentRef.setInput('formType', formType);
-  componentRef.setInput('onSave', onSave);
+  try {
+    element.ownerDocument.head.appendChild(styleElement);
+    // Wymagane inputy muszą być dostępne już podczas pierwszego renderu.
+    appRef.bootstrap(form, {
+      hostElement: element,
+      bindings: [
+        inputBinding('binding', () => binding),
+        inputBinding('config', () => config),
+        inputBinding('bridge', () => bridge),
+      ],
+    });
 
-  return {
-    destroy: () => {
-      appRef.destroy();
-      styleElement.remove();
-    },
-    setData: (data: FormDataType) => componentRef.setInput('data', data),
-  };
-};
+    return {
+      destroy(): void {
+        appRef.destroy();
+        styleElement.remove();
+      },
+    };
+  } catch (error) {
+    appRef.destroy();
+    styleElement.remove();
+    throw error;
+  }
+}
