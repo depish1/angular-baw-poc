@@ -1,0 +1,28 @@
+:host {
+  display: block;
+  box-sizing: border-box;
+  padding: var(--ui-spacing-md, 12px);
+  border: 1px solid currentColor;
+  border-radius: var(--ui-radius, 6px);
+  font: inherit;
+}
+
+:host(.ui-alert--info) {
+  color: var(--ui-color-info, #175cd3);
+  background: var(--ui-color-info-background, #eff8ff);
+}
+
+:host(.ui-alert--success) {
+  color: var(--ui-color-success, #067647);
+  background: var(--ui-color-success-background, #ecfdf3);
+}
+
+:host(.ui-alert--warning) {
+  color: var(--ui-color-warning, #93370d);
+  background: var(--ui-color-warning-background, #fffaeb);
+}
+
+:host(.ui-alert--error) {
+  color: var(--ui-color-error, #b42318);
+  background: var(--ui-color-error-background, #fef3f2);
+}
