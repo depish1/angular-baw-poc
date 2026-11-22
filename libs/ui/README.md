@@ -85,6 +85,22 @@ Grupa wielokrotnego wyboru przechowuje **tablicę pełnych obiektów**. Obowiąz
 `orientation` to `vertical` (domyślnie) albo `horizontal`. Zmiana listy `options`
 nie podmienia wybranych obiektów w wartości formularza.
 
+### UiRadioGroup i UiFormFieldRadioGroup
+
+Grupa pojedynczego wyboru przechowuje **cały obiekt lub `null`**, porównuje
+po obowiązkowym `valueKey` i wyświetla etykiety z `labelKey`:
+
+```html
+<ui-radio-group [options]="departments" labelKey="name" valueKey="id"
+  [(value)]="selectedDepartment" />
+<ui-form-field-radio-group label="Dział" [formField]="fields.department"
+  [options]="departments" labelKey="name" valueKey="id" />
+```
+
+Natywne radio zachowuje wybór po ponownym kliknięciu. Wszystkie instancje
+`UiRadioGroup` mają odrębne nazwy grup DOM. `orientation` działa analogicznie
+do grupy checkboxów.
+
 ## CSS i motywy
 
 Paczka udostępnia pliki CSS jako osobne eksporty. Aplikacja wybiera **jeden**
