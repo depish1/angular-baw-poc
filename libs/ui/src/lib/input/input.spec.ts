@@ -39,15 +39,20 @@ describe('UiInput i UiFormFieldInput', () => {
     const input = field.querySelector('input') as HTMLInputElement;
     const label = field.querySelector('label') as HTMLLabelElement;
     expect(label.htmlFor).toBe(input.id);
+    expect(host.fields.name().invalid()).toBe(true);
+    expect(host.fields.name().touched()).toBe(false);
+    expect(input.getAttribute('aria-invalid')).toBe('false');
     expect(field.querySelector('ui-error')).toBeNull();
     host.fields.name().markAsTouched();
     fixture.detectChanges();
+    expect(input.getAttribute('aria-invalid')).toBe('true');
     expect(field.querySelector('[role="alert"]')?.textContent).toContain('Imię jest wymagane');
     expect(input.getAttribute('aria-describedby')).toBe(field.querySelector('[role="alert"]')?.id);
     input.value = 'Anna';
     input.dispatchEvent(new Event('input', { bubbles: true }));
     fixture.detectChanges();
     expect(host.data().name).toBe('Anna');
+    expect(input.getAttribute('aria-invalid')).toBe('false');
     expect(field.querySelector('ui-error')).toBeNull();
   });
 
@@ -59,6 +64,7 @@ describe('UiInput i UiFormFieldInput', () => {
     await fixture.whenStable();
     fixture.detectChanges();
     expect(fixture.componentInstance.fields.name().touched()).toBe(true);
+    expect(input.getAttribute('aria-invalid')).toBe('true');
     fixture.componentInstance.fields.name().value.set('Gotowe');
     fixture.detectChanges();
     expect(input.value).toBe('Gotowe');

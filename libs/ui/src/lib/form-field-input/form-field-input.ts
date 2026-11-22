@@ -12,7 +12,7 @@ let nextInputId = 0;
   template: `
     <ui-label [for]="controlId">{{ label() }}</ui-label>
     <ui-input [id]="controlId" [type]="type()" [size]="size()" [placeholder]="placeholder()"
-      [disabled]="disabled()" [readonly]="readonly()" [invalid]="invalid()"
+      [disabled]="disabled()" [readonly]="readonly()" [invalid]="showError()"
       [describedBy]="showError() ? errorId : ''" [value]="value()" [touched]="touched()"
       (valueChange)="value.set($event)" (touchedChange)="touched.set($event)" />
     @if (showError()) { <ui-error [id]="errorId" [message]="errorMessage()" /> }
