@@ -7,37 +7,37 @@
   <body>
     <h1>Strona hosta</h1>
 
-    <p>Angular bundle jest ładowany w głównym oknie.</p>
+    <p>Bundle aplikacji AAA ładowany jest po wykonaniu <code>npm run build:baw</code> w <code>apps/aaa</code>.</p>
 
     <button id="start" onclick="startForm()">Uruchom Angular</button>
     <button onclick="destroyForm()">Zniszcz Angular</button>
-    <button onclick="updateForm()">Zmień dane</button>
+    <button onclick="startRequest()">Uruchom formularz wniosku</button>
 
-    <div id="iframe-container"></div>
     <div id="root"></div>
-    <div id="root2"></div>
 
-    <script src="./angular-form.js"></script>
+    <script src="../apps/aaa/dist/baw/aaa.js"></script>
 
     <script>
       let angularInstance = null;
-      let secondAngularInstance = null;
-
       async function startForm() {
         if (angularInstance) return;
-        console.log(AngularForm);
-
         angularInstance = await AngularForm.init(
-          'REGISTRATION',
+          'CUSTOMER',
           document.getElementById('root'),
-          {
-            firstName: 'Kamil',
-            lastName: 'Kowalski',
-          },
-          function (data) {
-            console.log('Dane otrzymane z Angulara:', data);
-            alert(`Zapisano: ${data.firstName} ${data.lastName}`);
-          },
+          { firstName: 'Kamil', lastName: 'Kowalski' },
+          { title: 'Dane klienta' },
+          { complete: (data) => console.log('Wynik formularza:', data) },
+        );
+      }
+
+      async function startRequest() {
+        if (angularInstance) return;
+        angularInstance = await AngularForm.init(
+          'REQUEST',
+          document.getElementById('root'),
+          { requestId: 42, amount: 1500 },
+          { currency: 'PLN', allowApproval: true },
+          { complete: (data) => console.log('Wynik formularza:', data) },
         );
       }
 
@@ -50,14 +50,6 @@
         console.log('Angular zniszczony');
       }
 
-      function updateForm() {
-        if (!angularInstance) return;
-
-        angularInstance.setData({
-          firstName: 'Nadia',
-          lastName: 'Nowa',
-        });
-      }
     </script>
   </body>
 </html>

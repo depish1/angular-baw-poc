@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "build:baw": "ng build && node ../../tools/bundle.mjs aaa"
+    "build:baw": "ng build && node ../../tools/bundle.mjs aaa",
+    "test:baw": "npm run build:baw && node scripts/smoke-baw.mjs"
   },
   "private": true,
   "packageManager": "npm@11.20.0",
