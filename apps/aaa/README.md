@@ -11,6 +11,8 @@ podczas inicjalizacji.
 2. Dodaj komponent do rejestru `src/app/forms.ts` pod nowym identyfikatorem.
 3. Nie zmieniaj wspólnego resolvera w `libs/form-runtime/src/form-registry.ts`.
 
+Do testowania formularza lokalnie dodaj również dane do `src/dev/fixtures.ts`.
+
 `libs/form-runtime` jest na razie prostym, niezależnym od Angulara modułem
 TypeScript, dołączanym ze źródeł. Pakowanie i zasady zgodności wersji bibliotek
 będą przedmiotem osobnych zadań.
@@ -33,7 +35,23 @@ instance.destroy();
 W docelowym środowisku bridge będzie przekazywał wynik do Coach View oraz
 obsługiwał Boundary Event. Dane od hosta JS nie są walidowane w czasie wykonania.
 
-## Uruchomienie i weryfikacja
+## Lokalny development (bez BAW)
+
+W katalogu `apps/aaa` uruchom `npm start`, a następnie otwórz:
+
+- `http://localhost:4200/` — domyślnie formularz `CUSTOMER`.
+- `http://localhost:4200/?formType=REQUEST` — formularz `REQUEST`.
+
+`main.dev.ts` wywołuje tę samą funkcję `init()` co host BAW, przekazując
+`binding` i `config` z `src/dev/fixtures.ts`. Placeholder bridge wypisuje
+rezultat `complete()` do konsoli przeglądarki. Nieznany `formType` wyświetla
+błąd na stronie.
+
+Punkt wejścia `main.dev.ts` działa **wyłącznie** w konfiguracji developerskiej.
+`npm run build` i `npm run build:baw` używają produkcyjnego `main.ts` — samo
+załadowanie ich kodu nie inicjalizuje Angulara.
+
+## Build i testy
 
 W katalogu `apps/aaa`:
 
