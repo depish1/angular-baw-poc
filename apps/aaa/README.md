@@ -67,3 +67,31 @@ katalogu). Buduje `dist/baw/aaa.js` i uruchamia test bundla z użyciem jsdom.
 Do testów ręcznych uruchom serwer statyczny z katalogu głównego repozytorium
 i otwórz `/xTest/test.html`. Strona testowa ładuje **wygenerowany** bundle z
 `apps/aaa/dist/baw/aaa.js`, nie przechowuje jego kopii w repozytorium.
+
+## Paczki ui i docs
+
+Przed instalacją zależności `aaa` wygeneruj lokalne paczki npm w kolejności:
+
+1. `libs/ui`: `npm ci`, `npm run pack:local` — tworzy `ui-0.1.0.tgz`.
+2. `libs/docs`: `npm ci`, `npm run pack:local` — tworzy `docs-0.1.0.tgz`.
+3. `apps/aaa`: `npm ci`, `npm start`.
+
+Ścieżki do archiwów są zapisane w `apps/aaa/package.json`. Każda aplikacja
+i biblioteka posiada własne `node_modules`. Lokalnie nie trzeba publikować
+paczek. Po zmianach w bibliotekach ponownie wygeneruj i zainstaluj archiwa.
+
+`aaa` używa czerwonego motywu z `ui/styles`; niebieski można wybrać przez
+zamianę importu `ui/styles/themes/red.css` na `blue.css` w `src/styles.css`.
+
+Test `src/app/libraries.spec.ts` sprawdza import obu paczek i wspólny runtime
+Angulara 22.
+
+## Demonstracja komponentów i Documents
+
+Po uruchomieniu `npm start` otwórz `/?formType=DOCUMENTS_DEMO`.
+Formularz zawiera pola tekstowe, checkbox, grupę checkboxów, grupę radio
+i `Documents` z walidacją Angular Signal Forms. Dla wygody na starcie
+podstawiany jest testowy dokument, więc formularz można zatwierdzić bez API.
+Dodawanie nowych plików nadal wymaga lokalnej usługi repozytorium A.
+Na zakończenie formularz przekazuje wynik do lokalnego placeholdera bridge
+(rezultat wypisywany jest w konsoli przeglądarki).

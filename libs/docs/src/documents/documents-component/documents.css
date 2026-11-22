@@ -15,6 +15,10 @@
   gap: 0.5rem;
 }
 
+.documents__actions ui-input { flex: 1; min-width: 0; }
+.documents-table td:last-child { white-space: nowrap; }
+.documents-table td:last-child ui-button { margin-right: var(--ui-spacing-xs, 4px); }
+
 .documents-table {
   width: 100%;
   table-layout: fixed;
@@ -36,12 +40,4 @@
 .documents__container[aria-invalid='true'] {
   outline: 1px solid #b42318;
   outline-offset: -1px;
-}
-
-.error {
-  background:#ff7d7d;  
-  color: rgb(85, 0, 0);
-  padding: 0.5rem;
-  border: 1px solid rgb(85, 0, 0);
-  width: 400px;
 }
