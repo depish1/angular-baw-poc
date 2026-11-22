@@ -1,12 +1,13 @@
 import { Component, computed, effect, ElementRef, inject, input, model, output, signal, untracked } from '@angular/core';
 import type { FormValueControl, ValidationError } from '@angular/forms/signals';
+import { UiAlert, UiButton, UiInput } from 'ui';
 import { DocumentMetadata, RepositoryType, SynchronizationMode, Repository } from './documents.types';
 import { RepositoryFactory } from './RepositoryFactory';
 import { FileDownloadService } from './services/file-download.service';
 import { DocumentsStore } from './services/documents-store.service';
 
 @Component({
-  imports: [],
+  imports: [UiAlert, UiButton, UiInput],
   providers: [DocumentsStore, FileDownloadService],
   selector: 'app-documents',
   host: { '(focusout)': 'handleFocusOut($event)' },
@@ -29,6 +30,7 @@ export class Documents implements FormValueControl<DocumentMetadata[]> {
   private readonly fileDownloadService = inject(FileDownloadService);
 
   protected formatDate(date: string): string {
+    if (!date || Number.isNaN(new Date(date).getTime())) return '';
     return new Intl.DateTimeFormat('sv-SE', {
       timeZone: 'Europe/Warsaw',
       year: 'numeric',

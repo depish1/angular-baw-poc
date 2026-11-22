@@ -3,20 +3,20 @@
   @if (invalid()) {
     @for (error of errors(); track $index) {
       @if (error.message) {
-        <p  class="error" role="alert">{{ error.message }}</p>
+        <ui-alert variant="error">{{ error.message }}</ui-alert>
       }
     }
   }
   <nav class="documents__actions">
-    <input
+    <ui-input
       type="search"
       [disabled]="disabled()"
       placeholder="Szukaj po nazwie pliku..."
       [value]="searchQuery()"
-      (input)="searchQuery.set($any($event.target).value)"
+      (valueChange)="searchQuery.set($event)"
     />
     <input #fileInput type="file" hidden [disabled]="actionsDisabled()" (change)="uploadDocument($event)" />
-    <button type="button" (click)="fileInput.click()" [disabled]="actionsDisabled()">Dodaj dokument</button>
+    <ui-button variant="primary" size="default" (clicked)="fileInput.click()" [disabled]="actionsDisabled()">Dodaj dokument</ui-button>
   </nav>
   <table class="documents-table">
     <colgroup>
@@ -44,19 +44,18 @@
           <td>{{ formatDate(document.metadata().createDate) }}</td>
           <td>
             @if (document.state() === 'MARKED_FOR_DELETE' || document.state() === 'DELETE_FAILED') {
-              <button type="button" [disabled]="actionsDisabled()" (click)="undoDelete(document.localId)">Cofnij</button>
+              <ui-button variant="secondary" size="mini" [disabled]="actionsDisabled()" (clicked)="undoDelete(document.localId)">Cofnij</ui-button>
             } @else {
-              <button
-                type="button"
+              <ui-button variant="secondary" size="mini"
                 [disabled]="document.state() === 'ADDING' || document.state() === 'DELETING' || actionsDisabled()"
-                (click)="removeDocument(document.localId)"
+                (clicked)="removeDocument(document.localId)"
               >
                 Usuń
-              </button>
+              </ui-button>
             }
-            <button type="button" [disabled]="document.state() === 'DELETING' || actionsDisabled()" (click)="downloadDocument(document.localId)">
+            <ui-button variant="secondary" size="mini" [disabled]="document.state() === 'DELETING' || actionsDisabled()" (clicked)="downloadDocument(document.localId)">
               Pobierz
-            </button>
+            </ui-button>
           </td>
         </tr>
       }
