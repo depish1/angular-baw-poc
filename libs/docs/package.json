@@ -1,6 +1,6 @@
 {
   "name": "docs",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "scripts": {
     "ng": "ng",
     "start": "ng serve web-component-poc",
@@ -8,11 +8,24 @@
     "watch": "ng build web-component-poc --watch --configuration development",
     "test": "ng test web-component-poc",
     "build:element": "ng build documents-element",
-    "test:element": "npm run build:element && node scripts/smoke-documents-element.mjs"
+    "test:element": "npm run build:element && node scripts/smoke-documents-element.mjs",
+    "build:lib": "ng build docs-lib",
+    "pack:check": "npm run build:lib && npm pack ./dist/docs-lib --dry-run",
+    "pack:local": "npm run build:lib && npm pack ./dist/docs-lib"
   },
-  "private": true,
+  "private": false,
   "packageManager": "npm@11.20.0",
+  "peerDependencies": {
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "@angular/forms": "^21.0.0",
+    "rxjs": "^7.8.0",
+    "ui": "^0.1.0"
+  },
   "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
     "@angular/common": "^21.2.0",
     "@angular/compiler": "^21.2.0",
     "@angular/core": "^21.2.0",
@@ -21,14 +34,12 @@
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-    "ui": "file:../ui/ui-0.1.0.tgz"
-  },
-  "devDependencies": {
+    "ui": "file:../ui/ui-0.1.0.tgz",
     "@angular/build": "^21.2.29",
     "@angular/cli": "^21.2.29",
     "@angular/compiler-cli": "^21.2.0",
     "jsdom": "^28.0.0",
+    "ng-packagr": "^21.2.7",
     "prettier": "^3.8.1",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"

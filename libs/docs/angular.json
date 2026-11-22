@@ -6,6 +6,18 @@
   },
   "newProjectRoot": "projects",
   "projects": {
+    "docs-lib": {
+      "projectType": "library",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "options": { "project": "ng-package.json", "tsConfig": "tsconfig.lib.json" }
+        }
+      }
+    },
     "web-component-poc": {
       "projectType": "application",
       "schematics": {},
