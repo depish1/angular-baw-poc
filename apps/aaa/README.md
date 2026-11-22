@@ -85,3 +85,13 @@ zamianę importu `ui/styles/themes/red.css` na `blue.css` w `src/styles.css`.
 
 Test `src/app/libraries.spec.ts` sprawdza import obu paczek i wspólny runtime
 Angulara 22.
+
+## Demonstracja komponentów i Documents
+
+Po uruchomieniu `npm start` otwórz `/?formType=DOCUMENTS_DEMO`.
+Formularz zawiera pola tekstowe, checkbox, grupę checkboxów, grupę radio
+i `Documents` z walidacją Angular Signal Forms. Dla wygody na starcie
+podstawiany jest testowy dokument, więc formularz można zatwierdzić bez API.
+Dodawanie nowych plików nadal wymaga lokalnej usługi repozytorium A.
+Na zakończenie formularz przekazuje wynik do lokalnego placeholdera bridge
+(rezultat wypisywany jest w konsoli przeglądarki).

@@ -4,11 +4,13 @@ import { resolveForm } from '../../../../libs/form-runtime/src/form-registry';
 import { forms } from './forms';
 import { CustomerForm } from './forms/customer-form';
 import { RequestForm } from './forms/request-form';
+import { DocumentsDemoForm } from './forms/documents-demo-form';
 
 describe('wybór formularza na podstawie formType', () => {
   it('wybiera właściwy komponent z rejestru aplikacji', () => {
     expect(resolveForm(forms, 'CUSTOMER')).toBe(CustomerForm);
     expect(resolveForm(forms, 'REQUEST')).toBe(RequestForm);
+    expect(resolveForm(forms, 'DOCUMENTS_DEMO')).toBe(DocumentsDemoForm);
   });
 
   it('zgłasza jednoznaczny błąd dla nieznanego typu', () => {
