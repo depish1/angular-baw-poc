@@ -1,0 +1,53 @@
+:host {
+  display: inline-block;
+}
+
+button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  padding: var(--ui-spacing-sm, 8px) var(--ui-spacing-md, 12px);
+  border: 1px solid transparent;
+  border-radius: var(--ui-radius, 6px);
+  font: inherit;
+  font-weight: 600;
+  line-height: 1.25;
+  cursor: pointer;
+}
+
+.ui-button--primary {
+  background: var(--ui-color-primary, #b42318);
+  color: var(--ui-color-on-primary, #fff);
+}
+
+.ui-button--primary:hover:not(:disabled) {
+  background: var(--ui-color-primary-hover, #912018);
+}
+
+.ui-button--secondary {
+  background: var(--ui-color-surface, #fff);
+  color: var(--ui-color-text, #222);
+  border-color: var(--ui-color-border, #8d929a);
+}
+
+.ui-button--secondary:hover:not(:disabled) {
+  background: var(--ui-color-surface-hover, #f3f4f6);
+}
+
+.ui-button--mini {
+  min-height: 26px;
+  padding: var(--ui-spacing-xs, 4px) var(--ui-spacing-sm, 8px);
+  font-size: 0.8125rem;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--ui-color-focus, #2563eb);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
