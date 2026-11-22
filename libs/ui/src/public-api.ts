@@ -7,3 +7,5 @@ export type { InputType, InputSize } from './lib/input/input';
 export { UiLabel } from './lib/label/label';
 export { UiError } from './lib/error/error';
 export { UiFormFieldInput } from './lib/form-field-input/form-field-input';
+export { UiCheckbox } from './lib/checkbox/checkbox';
+export { UiFormFieldCheckbox } from './lib/form-field-checkbox/form-field-checkbox';

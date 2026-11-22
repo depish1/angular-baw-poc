@@ -58,6 +58,18 @@ po dotknięciu niepoprawnego pola). Sam wrapper jest kontrolką Signal Forms,
 przekazując wartość do wewnętrznego `UiInput` bez dodatkowego modelu danych.
 W formularzu należy zaimportować dyrektywę `FormField` z `@angular/forms/signals`.
 
+### UiCheckbox i UiFormFieldCheckbox
+
+Pojedynczy checkbox przechowuje `boolean` (`false` domyślnie), wspiera
+`disabled` i Signal Forms:
+
+```html
+<ui-checkbox [(value)]="accepted">Akceptuję regulamin</ui-checkbox>
+<ui-form-field-checkbox label="Akceptuję regulamin" [formField]="fields.accepted" />
+```
+
+Gotowe pole korzysta z `UiLabel` i `UiError`, z etykietą po prawej stronie.
+
 ## CSS i motywy
 
 Paczka udostępnia pliki CSS jako osobne eksporty. Aplikacja wybiera **jeden**
