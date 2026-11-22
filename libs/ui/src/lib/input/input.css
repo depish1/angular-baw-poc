@@ -1,0 +1,6 @@
+:host { display: inline-block; width: 100%; }
+input { box-sizing: border-box; width: 100%; padding: var(--ui-spacing-sm, 8px) var(--ui-spacing-md, 12px); border: 1px solid var(--ui-color-border, #8d929a); border-radius: var(--ui-radius, 6px); background: var(--ui-color-surface, white); color: var(--ui-color-text, #222); font: inherit; }
+input:focus-visible { outline: 2px solid var(--ui-color-focus, #175cd3); outline-offset: 1px; }
+input[aria-invalid="true"] { border-color: var(--ui-color-error, #b42318); }
+input:disabled { opacity: .6; cursor: not-allowed; }
+input.ui-input--mini { padding: var(--ui-spacing-xs, 4px) var(--ui-spacing-sm, 8px); font-size: .875rem; }

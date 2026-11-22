@@ -6,7 +6,7 @@ Jest rozwijana na Angularze 21, z własnymi zależnościami i `node_modules`.
 ## Publiczne API
 
 ```typescript
-import { UiButton, UiAlert } from 'ui';
+import { UiButton, UiAlert, UiInput, UiFormFieldInput } from 'ui';
 ```
 
 Przykładowe użycie w komponencie standalone:
@@ -40,6 +40,23 @@ export class ExampleComponent { /* ... */ }
 - `variant`: `info` (domyślnie), `success`, `warning`, `error`.
 - Treść komunikatu przez `ng-content`.
 - Dla `error` host ma `role="alert"`, dla pozostałych `role="status"`.
+
+### UiInput i UiFormFieldInput
+
+`UiInput` działa samodzielnie lub z Angular Signal Forms. Ma typy `text`,
+`search`, `email`, `password`, rozmiary `default` / `mini` oraz parametry
+`placeholder`, `id`, `disabled`, `readonly`. `value = model('')` udostępnia
+`valueChange`; natywne zdarzenia inputa mogą być obsługiwane standardowo.
+
+```html
+<ui-input type="search" placeholder="Filtruj" [(value)]="query" />
+<ui-form-field-input label="Imię" [formField]="fields.name" />
+```
+
+`UiFormFieldInput` łączy `UiLabel`, `UiInput` i `UiError` (błąd pojawia się
+po dotknięciu niepoprawnego pola). Sam wrapper jest kontrolką Signal Forms,
+przekazując wartość do wewnętrznego `UiInput` bez dodatkowego modelu danych.
+W formularzu należy zaimportować dyrektywę `FormField` z `@angular/forms/signals`.
 
 ## CSS i motywy
 
