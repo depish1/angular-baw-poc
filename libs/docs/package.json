@@ -20,28 +20,28 @@
     "@angular/core": "^21.0.0 || ^22.0.0",
     "@angular/forms": "^21.0.0 || ^22.0.0",
     "rxjs": "^7.8.0",
-    "ui": "^0.1.0"
+    "ui": "file:../ui/ui-0.1.0.tgz"
   },
   "dependencies": {
     "tslib": "^2.3.0"
   },
   "devDependencies": {
+    "@angular/build": "^21.2.29",
+    "@angular/cli": "^21.2.29",
     "@angular/common": "^21.2.0",
     "@angular/compiler": "^21.2.0",
+    "@angular/compiler-cli": "^21.2.0",
     "@angular/core": "^21.2.0",
     "@angular/elements": "^21.2.26",
     "@angular/forms": "^21.2.0",
     "@angular/platform-browser": "^21.2.0",
     "@angular/router": "^21.2.0",
-    "rxjs": "~7.8.0",
-    "ui": "file:../ui/ui-0.1.0.tgz",
-    "@angular/build": "^21.2.29",
-    "@angular/cli": "^21.2.29",
-    "@angular/compiler-cli": "^21.2.0",
     "jsdom": "^28.0.0",
     "ng-packagr": "^21.2.7",
     "prettier": "^3.8.1",
+    "rxjs": "~7.8.0",
     "typescript": "~5.9.2",
+    "ui": "file:../ui/ui-0.1.0.tgz",
     "vitest": "^4.0.8"
   }
 }
